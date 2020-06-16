@@ -1,0 +1,22 @@
+<% provide(:title, "Items") %>
+
+<h1>Listing items</h1>
+
+<table class="item-list">
+  <tr>
+    <th>Item name</th>
+    <th>Price</th>
+    <th><button name="add">Add</button></th>
+  </tr>
+
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.price %></td>
+      <td>
+        <button name="edit">Edit</button>
+        <button name="delete">Delete</button>
+      </td>
+    </tr>
+  <% end %>
+</table>

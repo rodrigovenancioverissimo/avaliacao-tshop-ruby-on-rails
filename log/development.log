@@ -1,0 +1,247 @@
+  [1m[36m (68.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (85.3ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20161215102032)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (120.7ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" text, "password_digest" text, "first_name" character varying, "last_name" character varying) [0m
+  [1m[35m (1.0ms)[0m  ALTER TABLE "users" ADD "created_at" timestamptz
+  [1m[36m (0.9ms)[0m  [1mALTER TABLE "users" ADD "updated_at" timestamptz[0m
+  [1m[35m (46.9ms)[0m  CREATE  INDEX  "index_users_on_email" ON "users"  ("email")
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20161215102032"]]
+  [1m[35m (24.7ms)[0m  COMMIT
+Migrating to CreateBusinesses (20161215102038)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (103.2ms)[0m  CREATE TABLE "businesses" ("id" serial primary key, "name" character varying, "address" text, "city" character varying, "user_id" integer) 
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "businesses" ADD "created_at" timestamptz[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "businesses" ADD "updated_at" timestamptz
+  [1m[36m (47.7ms)[0m  [1mCREATE  INDEX  "index_businesses_on_user_id" ON "businesses"  ("user_id")[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20161215102038"]]
+  [1m[36m (21.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateItems (20161215102045)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (119.5ms)[0m  [1mCREATE TABLE "items" ("id" serial primary key, "name" character varying, "price" bigint, "business_id" integer) [0m
+  [1m[35m (0.9ms)[0m  ALTER TABLE "items" ADD "created_at" timestamptz
+  [1m[36m (0.9ms)[0m  [1mALTER TABLE "items" ADD "updated_at" timestamptz[0m
+  [1m[35m (53.1ms)[0m  CREATE  INDEX  "index_items_on_business_id" ON "items"  ("business_id")
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20161215102045"]]
+  [1m[35m (21.1ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (6.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'businesses'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'items'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "john@taki.com"], ["password_digest", "$2a$10$Vc9H7PJw9jHM5vmyca.3eOZJHh61233JATKC2nz78rbdDCIk7gC3y"], ["first_name", "John"], ["last_name", "Doe"], ["created_at", "2020-06-10 22:05:51.650154"], ["updated_at", "2020-06-10 22:05:51.650154"]]
+  [1m[35m (45.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("email", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["email", "jane@taki.com"], ["password_digest", "$2a$10$CKVrMzABqnqqEPV9puhePeDOwEQDfn/KvYS.r01bEPSgj55ilQnYe"], ["first_name", "Jane"], ["last_name", "Doe"], ["created_at", "2020-06-10 22:05:51.760589"], ["updated_at", "2020-06-10 22:05:51.760589"]]
+  [1m[36m (3.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "businesses" ("name", "address", "city", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "JJ Cafe"], ["address", "JL Gatot Subroto 25F"], ["city", "Jakarta Pusat"], ["user_id", 1], ["created_at", "2020-06-10 22:05:51.772481"], ["updated_at", "2020-06-10 22:05:51.772481"]]
+  [1m[35m (2.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "businesses" ("name", "address", "city", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "XO Shop"], ["address", "JL Kebon Jeruk 55"], ["city", "Jakarta Barat"], ["user_id", 2], ["created_at", "2020-06-10 22:05:51.777212"], ["updated_at", "2020-06-10 22:05:51.777212"]]
+  [1m[36m (9.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "items" ("name", "price", "business_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Americano"], ["price", 15000], ["business_id", 1], ["created_at", "2020-06-10 22:05:51.791895"], ["updated_at", "2020-06-10 22:05:51.791895"]]
+  [1m[35m (5.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "items" ("name", "price", "business_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "Cappucino"], ["price", 30000], ["business_id", 1], ["created_at", "2020-06-10 22:05:51.799290"], ["updated_at", "2020-06-10 22:05:51.799290"]]
+  [1m[36m (9.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "items" ("name", "price", "business_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Latte"], ["price", 25000], ["business_id", 1], ["created_at", "2020-06-10 22:05:51.810481"], ["updated_at", "2020-06-10 22:05:51.810481"]]
+  [1m[35m (8.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "items" ("name", "price", "business_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "Mocha"], ["price", 30000], ["business_id", 1], ["created_at", "2020-06-10 22:05:51.821643"], ["updated_at", "2020-06-10 22:05:51.821643"]]
+  [1m[36m (9.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("name", "price", "business_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Apple Pie"], ["price", 30000], ["business_id", 1], ["created_at", "2020-06-10 22:05:51.832626"], ["updated_at", "2020-06-10 22:05:51.832626"]]
+  [1m[35m (9.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "items" ("name", "price", "business_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "T-Shirt"], ["price", 25000], ["business_id", 2], ["created_at", "2020-06-10 22:05:51.843815"], ["updated_at", "2020-06-10 22:05:51.843815"]]
+  [1m[36m (9.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "items" ("name", "price", "business_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Long Sleeve"], ["price", 40000], ["business_id", 2], ["created_at", "2020-06-10 22:05:51.854986"], ["updated_at", "2020-06-10 22:05:51.854986"]]
+  [1m[35m (20.7ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "items" ("name", "price", "business_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "Short Pants"], ["price", 35000], ["business_id", 2], ["created_at", "2020-06-10 22:05:51.878049"], ["updated_at", "2020-06-10 22:05:51.878049"]]
+  [1m[36m (6.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "items" ("name", "price", "business_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Long Pants"], ["price", 40000], ["business_id", 2], ["created_at", "2020-06-10 22:05:51.890557"], ["updated_at", "2020-06-10 22:05:51.890557"]]
+  [1m[35m (3.9ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "items" ("name", "price", "business_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "Underwear"], ["price", 25000], ["business_id", 2], ["created_at", "2020-06-10 22:05:51.900974"], ["updated_at", "2020-06-10 22:05:51.900974"]]
+  [1m[36m (5.7ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/markets/512" for 127.0.0.1 at 2020-06-10 19:07:02 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (No route matches [GET] "/markets/512"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.5) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.5) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.5) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  rack (1.6.5) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.5) lib/rack/handler/webrick.rb:88:in `service'
+  /home/bsquintan/.rvm/rubies/ruby-2.3.4/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/bsquintan/.rvm/rubies/ruby-2.3.4/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/bsquintan/.rvm/rubies/ruby-2.3.4/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /home/bsquintan/.rvm/gems/ruby-2.3.4/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /home/bsquintan/.rvm/gems/ruby-2.3.4/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered /home/bsquintan/.rvm/gems/ruby-2.3.4/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (4.2ms)
+  Rendered /home/bsquintan/.rvm/gems/ruby-2.3.4/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (5.0ms)
+  Rendered /home/bsquintan/.rvm/gems/ruby-2.3.4/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (27.7ms)
+  Rendered /home/bsquintan/.rvm/gems/ruby-2.3.4/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.8ms)
+  Rendered /home/bsquintan/.rvm/gems/ruby-2.3.4/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/bsquintan/.rvm/gems/ruby-2.3.4/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/bsquintan/.rvm/gems/ruby-2.3.4/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /home/bsquintan/.rvm/gems/ruby-2.3.4/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (20.2ms)
+  Rendered /home/bsquintan/.rvm/gems/ruby-2.3.4/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/bsquintan/.rvm/gems/ruby-2.3.4/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/bsquintan/.rvm/gems/ruby-2.3.4/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (47.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-06-10 19:07:39 -0300
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+Redirected to http://localhost:3000/login
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 302 Found in 18ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2020-06-10 19:07:39 -0300
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (4.5ms)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_header.html.erb (3.1ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 2726ms (Views: 2725.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/businesses.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2020-06-10 19:07:42 -0300
+
+
+Started GET "/assets/home.self-0d0821da5c72828b2db2669e96ab593e58b11d8ec5b36b3b135addd60b8ce16f.css?body=1" for 127.0.0.1 at 2020-06-10 19:07:42 -0300
+
+
+Started GET "/assets/users.self-5cd1d7b882d65c58497d15f909471bbec8c809a26f63b54969dcab3279c5b1c8.css?body=1" for 127.0.0.1 at 2020-06-10 19:07:42 -0300
+
+
+Started GET "/assets/items.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2020-06-10 19:07:42 -0300
+
+
+Started GET "/assets/application.self-6f9a92ff9203c0e4e4419deefd66b18fad2156ac5cb1367cb6e3fd0b89f5e410.css?body=1" for 127.0.0.1 at 2020-06-10 19:07:42 -0300
+
+
+Started GET "/assets/jquery.self-c0aeac38aa941ec2dd88d290485efad29308ca522d2809b14f6e2e4831501937.js?body=1" for 127.0.0.1 at 2020-06-10 19:07:42 -0300
+
+
+Started GET "/assets/jquery_ujs.self-c350adabe6b48fc9194d6944ac444581924e960e313edce9e402db4112830d98.js?body=1" for 127.0.0.1 at 2020-06-10 19:07:42 -0300
+
+
+Started GET "/assets/businesses.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2020-06-10 19:07:42 -0300
+
+
+Started GET "/assets/dashboard.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2020-06-10 19:07:42 -0300
+
+
+Started GET "/assets/home.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2020-06-10 19:07:42 -0300
+
+
+Started GET "/assets/items.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2020-06-10 19:07:42 -0300
+
+
+Started GET "/assets/users.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2020-06-10 19:07:42 -0300
+
+
+Started GET "/assets/application.self-6a3cf5192354f71615ac51034b3e97c20eda99643fcaf5bbe6d41ad59bd12167.js?body=1" for 127.0.0.1 at 2020-06-10 19:07:42 -0300
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-10 19:08:19 -0300
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"A+p0kGD9haBsb91KeB554BoXjPFOtvSM5oZFT6gIeGvxMTUqE5GwI9oIVTfbOGhXPyTeBVXbNzKsN817nkqdiQ==", "session"=>{"email"=>"jhon@taki.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "jhon@taki.com"]]
+  Rendered sessions/new.html.erb within layouts/application (1.9ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 69ms (Views: 52.1ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-10 19:08:35 -0300
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"J4RbF+IttZP3TTGsWKJZbez+Jxs4QupP3FOiKbvbycLVXxqtkUGAEEEqudH7hEjayc117yMvKfGW4iodjZksIA==", "session"=>{"email"=>"john@taki.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "john@taki.com"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 123ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-06-10 19:08:35 -0300
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/items
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/items" for 127.0.0.1 at 2020-06-10 19:08:35 -0300
+Processing by ItemsController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mBusiness Load (0.3ms)[0m  [1mSELECT  "businesses".* FROM "businesses" WHERE "businesses"."user_id" = $1 LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mItem Load (0.2ms)[0m  SELECT "items".* FROM "items" WHERE "items"."business_id" = $1  [["business_id", 1]]
+  Rendered items/index.html.erb within layouts/application (4.9ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 53ms (Views: 26.6ms | ActiveRecord: 3.2ms)
