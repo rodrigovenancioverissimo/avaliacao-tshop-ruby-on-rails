@@ -1,50 +1,74 @@
-# TAKI Rails Interview Project
+[![license](https://img.shields.io/badge/Ruby-v2.0.0-red)]()
+[![license](https://img.shields.io/badge/Rails-v4.2.5.1-blue)]()
 
-Thank you for your interest in joining TAKI team. We're excited that you're considering to join our awesome team!
+# Desafio Avaliativo de Ruby on Rails Aplicado pela T-Shop
 
-This Rails project is a simple version of Taki:
-- There are User
-- User has a Business
-- Business has list of Items
-- User can Create/Update/Delete the Items in the Business
+Este é um desafio feito pelo time do [Taki App](https://takiapp.com.br/) e aplicado pela [T-Shop](https://www.tshopapp.com.br/), para avaliação dos meus conhecimentos em Ruby on Rails. O repositório original deste teste pode ser visto clicando [aqui](https://github.com/biancaquintan/taki-rails-interview). As instruções para este desafio podem ser visto clicando [aqui](doc/DESAFIO.md)
 
-## TO DO's
 
-Please add the following functionalities to the project:
+## Pré Requisitos
 
-1. [TAKI-001] Finish the implementation of Create/Update/Delete for Items
-2. [TAKI-002] Finish the implementation of User registration (and the Business associated with the User)
-3. [TAKI-003] Add the test cases for all the model and controllers
-4. [TAKI-004][Extra Credit] Improve the simple Authentication model
+Este desafio foi escrito em 2016 e o mesmo não é compatível com os sistemas e pacotes mais recentes. Segue abaixo os requisitos:
 
-Then you will need to create a pull request against the `master`. There must be at least 3 commits (plus extra credit if you do so).
+- Ubuntu 18 LTS
+- Ruby 2.0.0
+- PostgreSQL
+- libpq-dev
+- NodeJS
 
-Ambiguity of the project is intentional. We want you to ask questions, or use your common sense / best judgement.
+## Execução em Windows
 
-*Please make sure that you also include the unit tests for the models and controllers, and properly document your codes.*
+Caso você queira executar o Ruby on Rails no Windows. Recomendo atualiza-lo para a versão mais recente e usar o WLS2. Você poderá instalar a versão 18 do Ubuntu na Microsoft Store e usa-lo normalmente.
 
-## How to Setup
+Para o banco de dados, recomendo instalar o docker, pois é mais fácil e simples de instalar.
 
-1. `bundle install`
-2. `rake db:migrate`
-2. `rake db:seed`
-3. `rails s`
+## Banco de dados
 
-## Credentials
+A modelagem do banco de dados segue a figura abaixo:
+
+<img src="doc/assets/banco-de-dados.png" style="max-width: 500px; margin: auto;display: block;">
+
+## Instalação
+
+Para facilitar fiz uma lista de comandos para executar em uma instalação limpa do projeto. Se você acabou de formatar ou criar uma máquina com o Ubuntu 18, basta executar os comandos abaixo na sequencia, alterando a parte escrita 'NOME_DO_USUARIO' para o seu usuário do ubuntu.
+
+```
+
+sudo apt update
+
+sudo apt install gnupg2 libpq-dev nodejs
+
+gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+\curl -sSL https://get.rvm.io | bash -s stable
+
+source /home/NOME_DO_USUARIO/.rvm/scripts/rvm
+
+rvm install 2.0
+
+bundle
+
+rake db:create
+
+rake db:migrate
+
+rake db:seed
+
+```
+
+Após executar os comando acima levante o serviço com o comando:
+
+```
+rails serve
+```
+
+Você poderá visualizar a aplicação acessando http://localhost:3000 em seu navegador.
+
+## Usuários para teste
 
 ```
 Username: john@taki.com, Password: 000000
 Username: jane@taki.com, Password: 111111
 ```
 
-## Databases
-
-```
-List of relations
-Schema |       Name        | Type  |  Owner
---------+-------------------+-------+----------
-public | businesses        | table | postgres
-public | items             | table | postgres
-public | schema_migrations | table | postgres
-public | users             | table | postgres
-```
+Duvidas? Pergunte-me.
