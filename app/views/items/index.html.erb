@@ -6,7 +6,7 @@
   <tr>
     <th>Item name</th>
     <th>Price</th>
-    <th><button name="add">Add</button></th>
+    <th><%= link_to "Add", new_item_path, class:'btn btn-success btn-sm' %></th>
   </tr>
 
   <% @items.each do |item| %>
@@ -14,7 +14,7 @@
       <td><%= item.name %></td>
       <td><%= item.price %></td>
       <td>
-        <button name="edit">Edit</button>
+        <%= link_to "edit", edit_item_path(item) %>
         <button name="delete">Delete</button>
       </td>
     </tr>

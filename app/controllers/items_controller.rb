@@ -10,15 +10,42 @@ class ItemsController < ApplicationController
     end
   end
 
+  def new 
+
+  end
+
+  def edit
+
+  end
+
   def create
-    # TODO: [TAKI-001] Finish the implementation of Create/Update/Delete for Items
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to @item, notice: 'item was successfully created.'
+    else
+      render :new
+    end
   end
 
   def Update
-    # TODO: [TAKI-001] Finish the implementation of Create/Update/Delete for Items
+    if @item.update(item_params)
+      redirect_to @item, notice: 'item was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy
-    # TODO: [TAKI-001] Finish the implementation of Create/Update/Delete for Items
+    @item.destroy
+    redirect_to items_url, notice: 'item was successfully destroyed.'
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def item_params
+    params.require(:item).permit(:name, :price)
+  end
+
 end
