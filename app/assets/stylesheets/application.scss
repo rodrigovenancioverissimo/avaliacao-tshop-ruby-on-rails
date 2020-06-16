@@ -6,66 +6,74 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.mb-25 {
+  margin-bottom: 25px;
+}
+
 /* universal */
 body {
- padding-top: 60px;
+  padding-top: 60px;
 }
 
 section {
- overflow: auto;
+  overflow: auto;
 }
 
 textarea {
- resize: vertical;
+  resize: vertical;
 }
 
 .center {
- text-align: center;
+  text-align: center;
 }
 
 .center h1 {
- margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 h2.header-main {
- color: #ffffff;
- float: left;
+  color: #ffffff;
+  float: left;
 }
 
 .navbar {
- padding-left: 50px;
+  padding-left: 50px;
 }
 
 .navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333333;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
 }
 
 .navbar li {
-    float: left;
+  float: left;
 }
 
 .navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 16px;
-    text-decoration: none;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
 }
 
 .navbar li a:hover {
-    background-color: #111111;
+  background-color: #111111;
 }
 
 input#login-button {
- margin-top: 10px;
+  margin-top: 10px;
 }
 
 p#new-user-text {
- margin-top: 20px;
+  margin-top: 20px;
 }
 
 div.container {
@@ -77,35 +85,38 @@ h1.text-center {
 }
 
 table.item-list {
-  th, td {
+
+  th,
+  td {
     padding: 10px;
   }
 }
 
 #error_explanation {
-	color: red;
+  color: red;
 }
 
 #notice {
-    background:#E6EFC2;
-    color: #529214;
-    margin:8px 0;
+  background: #E6EFC2;
+  color: #529214;
+  margin: 8px 0;
 }
 
 #alert {
-    background:#FFF6BF;
-    color: #d53c00;
-    margin:0 auto;
+  background: #FFF6BF;
+  color: #d53c00;
+  margin: 0 auto;
 }
 
-#notice, #alert {
-    padding:8px 15px;
-    z-index:100;
-    border-radius:20px;
-    -moz-border-radius:20px;
-    -webkit-border-radius:20px;
+#notice,
+#alert {
+  padding: 8px 15px;
+  z-index: 100;
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
 }
 
-#alert ul{
-    margin: 5px 19px;
+#alert ul {
+  margin: 5px 19px;
 }

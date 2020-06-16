@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :edit, :create, :update, :destroy]
+
 
   def index
     # List all of the Items that are owned by the logged in User's Business
@@ -11,6 +13,10 @@ class ItemsController < ApplicationController
   end
 
   def new 
+    @item = Item.new
+  end
+
+  def show
 
   end
 
@@ -27,7 +33,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def Update
+  def update
     if @item.update(item_params)
       redirect_to @item, notice: 'item was successfully updated.'
     else

@@ -15,7 +15,8 @@
       <td><%= item.price %></td>
       <td>
         <%= link_to "edit", edit_item_path(item) %>
-        <button name="delete">Delete</button>
+        <%= link_to "delete", item_path(item), method: :delete, 
+        data: { confirm: 'Are you sure about that?'} %>
       </td>
     </tr>
   <% end %>

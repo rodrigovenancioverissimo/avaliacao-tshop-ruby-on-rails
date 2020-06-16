@@ -1,3 +1,8 @@
 class Item < ActiveRecord::Base
   belongs_to :business
-end
+
+  validates :name, :price, presence: true
+
+  validates :name, length: {minimum:3, maximum:64}
+  validates :price, length: {minimum:0, maximum:1_000_000_000}, numericality: true
+end10
