@@ -5,7 +5,10 @@
       <% if current_user %>
         <ul>
           <li><%= link_to "Home", root_path() %></li>
-          <li><%= link_to "Business", business_path(current_business) %></li>
+          <% begin %>
+            <li><%= link_to "Business", business_path(current_business)%></li>
+          <% rescue%>
+          <% end %>
           <li><%= link_to "Profile", user_path(current_user) %></li>
           <li class="divider"></li>
           <li>

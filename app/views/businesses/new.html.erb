@@ -5,6 +5,7 @@
     </div>
   </div>
 </div>
+<%= render 'shared/validates_errors', obj: @business %>
 <%= form_for @business do |f| %>
   <%= render 'form_fields', f:f %>
   <div class="container-fluid">

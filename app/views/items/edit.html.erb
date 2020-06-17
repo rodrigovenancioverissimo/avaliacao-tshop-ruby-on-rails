@@ -11,6 +11,7 @@
     </div>
   </div>
 </div>
+<%= render 'shared/validates_errors', obj: @item %>
 <%= form_for @item do |f| %>
   <%= render 'form_fields', f:f %>
   <div class="container-fluid">
