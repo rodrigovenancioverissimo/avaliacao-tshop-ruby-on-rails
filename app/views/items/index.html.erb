@@ -1,12 +1,17 @@
 <% provide(:title, "Items") %>
-
-<h1>Listing items</h1>
-
-<table class="item-list">
+<div class="row">
+  <div class="col-md-12 mb-15">
+    <div style="display:flex; align-items: center; justify-content: space-between">
+      <h1 style="margin:0">Listing items</h1>
+      <%= link_to "Add", new_item_path, class:'btn btn-success', style:'float:right' %>
+    </div>
+  </div>
+</div>
+<table class="item-list table table-hover table-striped table-bordered">
   <tr>
     <th>Item name</th>
     <th>Price</th>
-    <th><%= link_to "Add", new_item_path, class:'btn btn-success btn-sm' %></th>
+    <th></th>
   </tr>
 
   <% @items.each do |item| %>
@@ -14,9 +19,9 @@
       <td><%= item.name %></td>
       <td><%= item.price %></td>
       <td>
-        <%= link_to "edit", edit_item_path(item) %>
-        <%= link_to "delete", item_path(item), method: :delete, 
-        data: { confirm: 'Are you sure about that?'} %>
+        <%= link_to "edit", edit_item_path(item), class:"btn btn-xs btn-primary" %>
+        <%= link_to "delete", item_path(item), class:"btn btn-xs btn-danger",
+         method: :delete, data: { confirm: 'Are you sure about that?'} %>
       </td>
     </tr>
   <% end %>

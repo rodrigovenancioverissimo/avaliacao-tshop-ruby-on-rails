@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :items
-  resources :business
+  resources :businesses
 
   get    '/signup',       to: 'users#new'
 

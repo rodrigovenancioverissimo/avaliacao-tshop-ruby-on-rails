@@ -1,0 +1,19 @@
+<div class="container-fluid mb-25">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Show Business</h1>
+    </div>
+  </div>
+</div>
+<fieldset disabled>
+  <%= form_for @business do |f| %>
+    <%= render 'form_fields', f:f %>
+  <% end %>
+</fieldset>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <%= link_to "Edit", edit_business_path(@business), class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>

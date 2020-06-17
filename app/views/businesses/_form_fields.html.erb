@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class:'form-control', 
+            minlength: 3, maxlength: 64 %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :address %>
+        <%= f.text_field :address, class:'form-control', 
+            minlength: 3, maxlength: 128 %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :city %>
+        <%= f.text_field :city, class:'form-control', 
+            minlength: 3, maxlength: 64 %>
+      </div>
+    </div>
+  </div>
+</div>

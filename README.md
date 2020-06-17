@@ -3,7 +3,7 @@
 
 # Desafio Avaliativo de Ruby on Rails Aplicado pela T-Shop
 
-Este é um desafio feito pelo time do [Taki App](https://takiapp.com.br/) e aplicado pela [T-Shop](https://www.tshopapp.com.br/), para avaliação dos meus conhecimentos em Ruby on Rails. O repositório original deste teste pode ser visto clicando [aqui](https://github.com/biancaquintan/taki-rails-interview). As instruções para este desafio podem ser visto clicando [aqui](doc/DESAFIO.md)
+Este é um desafio feito pelo time do [Taki App](https://takiapp.com.br/) e aplicado pela [T-Shop](https://www.tshopapp.com.br/), para avaliação dos meus conhecimentos em Ruby on Rails. O repositório original deste teste pode ser visto clicando [aqui](https://github.com/biancaquintan/taki-rails-interview). As instruções em português para este desafio podem ser visto clicando [aqui](doc/DESAFIO.md), ou originalmente em inglês clicando [aqui](doc/CHALLENGE.MD)
 
 
 ## Pré Requisitos

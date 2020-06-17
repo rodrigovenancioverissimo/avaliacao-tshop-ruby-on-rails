@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :create, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
 
   def index
@@ -12,12 +12,12 @@ class ItemsController < ApplicationController
     end
   end
 
-  def new 
-    @item = Item.new
-  end
-
   def show
 
+  end
+
+  def new 
+    @item = Item.new
   end
 
   def edit
@@ -26,6 +26,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.business = current_business
     if @item.save
       redirect_to @item, notice: 'item was successfully created.'
     else

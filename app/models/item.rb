@@ -5,4 +5,4 @@ class Item < ActiveRecord::Base
 
   validates :name, length: {minimum:3, maximum:64}
   validates :price, length: {minimum:0, maximum:1_000_000_000}, numericality: true
-end10
+end
