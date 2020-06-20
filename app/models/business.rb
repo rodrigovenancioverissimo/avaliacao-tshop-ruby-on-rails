@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class Business < ActiveRecord::Base
   belongs_to :user
 
-  has_many :items
+  has_many :items, inverse_of: :bussines
 
-  validates :user_id, uniqueness: true
+  validates :user, presence: true
 end
