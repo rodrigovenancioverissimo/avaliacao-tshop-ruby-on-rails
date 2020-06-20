@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-sm-6 col-md-5">
       <div class="form-group">
         <%= f.label :first_name %>
         <%= f.text_field :first_name, class:'form-control', 
             minlength: 3, maxlength: 64, required: true %>
       </div>
     </div>
-    <div class="col-md-7">
+    <div class="col-sm-6 col-md-7">
       <div class="form-group">
         <%= f.label :last_name %>
         <%= f.text_field :last_name, class:'form-control', 
@@ -21,14 +21,14 @@
             minlength: 3, maxlength: 64, required: true %>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-sm-6 col-md-3">
       <div class="form-group">
         <%= f.label :password %>
         <%= f.text_field :password, class:'form-control', 
             minlength: 6, maxlength: 64 %>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-sm-6 col-md-3">
       <div class="form-group">
         <%= f.label :password_confirmation %>
         <%= f.text_field :password_confirmation, class:'form-control', 
